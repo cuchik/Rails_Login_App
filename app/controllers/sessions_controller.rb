@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
-	skip_before_action :require_login, only: [:new, :create]
-  def new
+	skip_before_action :require_login, only: [:login, :create]
+
+  def login
   end
 
   def create
@@ -9,16 +10,16 @@ class SessionsController < ApplicationController
   		#TODO save user infor into session
   		flash[:success] = "Login success"
   		log_in user
-  		redirect_to user
+  		redirect_to dashboard_path
   	else
-  		flash[:danger] = "Invalid username/password combination"
-  		render :new
+  		flash[:danger] = "Tên đăng nhập/mật khẩu không đúng, vui lòng thử lại!"
+  		render :login
   	end
   end
 
   def destroy
   	log_out
-  	flash[:success] = "Your are logged out"
+  	flash[:success] = "Bạn đã đăng xuất, vui lòng đăng nhập lại!"
   	redirect_to login_path
   end
 end

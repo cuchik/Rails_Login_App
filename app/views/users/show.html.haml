@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-lg-offset-3.col-lg-6
+      .text-left.col-lg-6
+      %label
+        User name: #{@user.name}
+    .text-right.col-lg-6
+      = link_to "Logout", logout_path, method: :delete
+  .col-lg-offset-3.col-lg-6
+    = link_to "List Users", users_path

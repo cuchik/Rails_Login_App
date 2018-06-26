@@ -27,6 +27,10 @@ gem "bcrypt"
 gem 'jquery-rails'
 gem "sprockets-rails", :require => "sprockets/railtie"
 gem "bootstrap-sass", "~> 3.3.6"
+gem "doorkeeper"
+gem "active_model_serializers", "~> 0.10.0"
+gem "haml"
+gem "haml-rails", "~> 1.0"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -53,6 +57,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'guard'
+  gem 'guard-minitest'
 end
 
 group :test do
@@ -61,6 +67,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem "minitest"
+  gem "minitest-reporters"
 end
 
 group :production do

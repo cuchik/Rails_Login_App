@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title ENT Software Center
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{:rel => "shortcut icon", "href" => "/assets/favicon/favicon.png"}
+  %body{:class => ("login_body" if request.env['PATH_INFO'] == login_path)}
+    = yield

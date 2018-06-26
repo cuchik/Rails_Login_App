@@ -1,0 +1,49 @@
+/ .container
+/   .row
+/     %h1.title Login
+/   .row
+/     .col-lg-offset-3.col-lg-6
+/       = form_for :session, url: login_path do |f|
+/         .form-group
+/           = f.label :name
+/           = f.text_field :name, placeholder: "Enter your name", class: "form-control"
+/         .form-group
+/           = f.label :password
+/           = f.password_field :password, placeholder: "Enter your password", |
+/             class: "form-control"                                           |
+/         .text-center
+/           = f.submit "Login", class: "btn btn-info col-lg-12"
+/         .text-right
+/           = link_to "Register", new_user_path
+.wrap
+	%h2 ENT Login
+	%h4 Chào mừng bạn đến với trang login
+	= form_for :session, url: login_path do |f|
+		- if flash
+			- flash.each do |key, value|
+				%div(class="alert alert-error")
+					%strong Lỗi!
+					= value
+		.login
+			.email
+				= f.label :name, "Tài khoản"
+				.email-input
+					.control-group
+						.input-prepend
+							%span.add-on
+								%i.icon-envelope
+							= f.text_field :name, placeholder: "Tên đăng nhập", :autofocus => true, :required => true
+			.pw
+				= f.label :password, "Mật khẩu"
+				.pw-input
+					.control-group
+						.input-prepend
+							%span.add-on
+								%i.icon-lock
+							= f.password_field :password, placeholder: "Mật khẩu", :required => true
+			.remember
+				%label.checkbox
+					%input{ :type=>"checkbox" } Ghi nhớ cho lần đăng nhập sau
+		.submit
+			%a(href="javascript:void(0)")Quên mật khẩu?
+			= f.submit "Đăng nhập", class: "btn btn-red5"

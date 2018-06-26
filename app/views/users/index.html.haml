@@ -1,0 +1,15 @@
+.container
+  .row
+    .col-lg-12.text-center
+      %h1.title LOGIN APP
+    .col-lg-12.form-group
+      %label{:for => ""} Welcome
+      = link_to current_user.name, user_path(current_user)
+    .col-lg-12.form-group
+      %label{:for => ""} List Users
+      %table.table
+        %thead
+          %th ID
+          %th User Name
+        %tbody
+          = render @users

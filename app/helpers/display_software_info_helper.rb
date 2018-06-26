@@ -1,0 +1,2 @@
+module DisplaySoftwareInfoHelper
+end

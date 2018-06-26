@@ -1,0 +1,23 @@
+.topbar
+	.container-fluid
+		%a{"href" => "javascript:void(0)", "class" => "company"} Net Admin Template
+		%form
+			%input{"type" => "text", "value" => "Search here..."}
+		%ul.mini
+			- @list_top_menu = [{ :icon => "gear.png", :title => "Setting" }.as_json]
+			- @test = 'test'
+			- @list_top_menu.each do |value|
+				%li
+					%a{'href' => 'javascript:void(0)'}
+						%img(src="/assets/icons/fugue/#{value["icon"]}") #{value["title"]}
+			%li
+				= link_to logout_path, method: :delete do
+					%img(src="/assets/icons/fugue/control-power.png") Logout
+.breadcrumbs
+	.container-fluid
+		%ul{"class" => "bread pull-left"}
+			%li
+				%a{"href" => "javascript:void(0)"}
+					%i{"class" => "icon-home icon-white"}
+			%li
+				%a{"href" => "javascript:void(0)"} Dashboard
