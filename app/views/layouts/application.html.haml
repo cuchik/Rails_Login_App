@@ -6,7 +6,18 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    / = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %link{:rel => "shortcut icon", "href" => "/assets/favicon/favicon.png"}
+    <script src="/assets/fromtemplate/jquery.js"></script>
+    <script src="/assets/fromtemplate/less.js"></script>
+    <script src="/assets/fromtemplate/bootstrap.min.js"></script>
+    <script src="/assets/fromtemplate/jquery.peity.js"></script>
+    <script src="/assets/fromtemplate/jquery.fancybox.js"></script>
+    <script src="/assets/fromtemplate/jquery.flot.js"></script>
+    <script src="/assets/fromtemplate/jquery.color.js"></script>
+    <script src="/assets/fromtemplate/jquery.flot.resize.js"></script>
+    <script src="/assets/fromtemplate/jquery.cookie.js"></script>
+    <script src="/assets/fromtemplate/custom.js"></script>
+    <script src="/assets/fromtemplate/demo.js"></script>
   %body{:class => ("login_body" if request.env['PATH_INFO'] == login_path)}
     = yield

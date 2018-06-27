@@ -4,11 +4,13 @@
 		%form
 			%input{"type" => "text", "value" => "Search here..."}
 		%ul.mini
-			- @list_top_menu = [{ :icon => "gear.png", :title => "Setting" }.as_json]
-			- @test = 'test'
+			- @list_top_menu = [{ :icon => "book-question.png", :title => "Support tickets"}.as_json,
+			{ :icon => "document-task.png", :title => "Pending orders"}.as_json,
+			{ :icon => "balloons-white.png", :title => "Messages"}.as_json,
+			{ :icon => "gear.png", :title => "Setting"}.as_json]
 			- @list_top_menu.each do |value|
 				%li
-					%a{'href' => 'javascript:void(0)'}
+					%a{"href" => "javascript:void(0)"}
 						%img(src="/assets/icons/fugue/#{value["icon"]}") #{value["title"]}
 			%li
 				= link_to logout_path, method: :delete do
@@ -21,3 +23,129 @@
 					%i{"class" => "icon-home icon-white"}
 			%li
 				%a{"href" => "javascript:void(0)"} Dashboard
+.main
+	.container-fluid
+		.navi
+			%ul.main-nav
+				- @list_left_menu = [{:icon => "icon-home", :title => "Dashboard", :label_class => "label-warning", :label_number => 10 }.as_json,
+				{:icon => "icon-list", :title => "Forms", :label_class => "label-info", :label_number => 1 }.as_json,
+				{:icon => "icon-th-large", :title => "Tables", :sub => true}.as_json,
+				{:icon => "icon-th-large", :title => "Tables", :sub => true}.as_json,
+				{:icon => "icon-th-large", :title => "Tables", :sub => true}.as_json,
+				{:icon => "icon-th-large", :title => "Tables", :sub => true}.as_json,
+				{:icon => "icon-th-large", :title => "Tables", :sub => true}.as_json,
+				{:icon => "icon-th-large", :title => "Tables", :sub => true}.as_json]
+				- @list_left_menu.each do |value|
+					%li
+						%a{"href" => "javascript:void(0)", :class => ["light", ("toggle-collapsed" if value["sub"] )]}
+							.ico
+								%i{"class" => "#{value["icon"]} icon-white"}
+							#{value["title"]}
+							- if value["label_class"]
+								%span{"class" => "label #{value["label_class"]}"} #{value["label_number"]}
+							- if value["sub"]
+								%img{"src" => "/assets/toggle-subnav-down.png"}
+						- if value["sub"]
+							%ul{"class" => "collapsed-nav closed"}
+								- @list_sub = ['Data Tables', 'Plain Tables', 'Media Tables']
+								- @list_sub.each do |value|
+									%li
+										%a{"href" => "javascript:void(0)"} #{value}
+		.content
+			%div{"class" => "row-fluid no-margin"}
+				.span12
+					%ul.quickstats
+						- @list_quick = [{:color => "6a9d29", :stroke => "345010", :type => "line", :data1 => "5,3,9,6,5,9,7,3,5,10", :data2 => "+ 9834.41 $", :data3 => "Current balance", :class_data2 => "green"}.as_json,
+						{:color => "2c5b96", :stroke => "102c50", :type => "bar", :data1 => "2,5,4,6,5,4,7,8", :data2 => "128.32", :data3 => "Orders per month"}.as_json,
+						{:color => "962c2c", :stroke => "651111", :type => "pie", :data1 => "6/10", :data2 => "60%", :data3 => "Member qoute"}.as_json,
+						{:color => "2c5b96", :stroke => "102c50", :type => "line", :data1 => "521,500,481,429,550,521", :data2 => "521.3 / month", :data3 => "Unique visitors rate"}.as_json];
+						- @list_quick.each do |value|
+							%li
+								.small-chart{:data => {:color => "#{value["color"]}", :stroke => "#{value["stroke"]}", :type => "#{value["type"]}"}} #{value["data1"]}
+								.chart-detail
+									%span{:class => ["amount", ("green" if value["class_data2"] )]} #{value["data2"]}
+									%span.description #{value["data3"]}
+			%div{"class" => "row-fluid no-margin"}
+				.span12
+					%ul.quicktasks
+						- @list_quick1 = [{ :icon => "order-149.png", :title => "Check orders"}.as_json,
+						{ :icon => "calendar.png", :title => "Upcoming events"}.as_json,
+						{ :icon => "basket.png", :title => "New product"}.as_json,
+						{ :icon => "communication.png", :title => "Support tickets"}.as_json,
+						{ :icon => "hire-me.png", :title => "Approve user"}.as_json,
+						{ :icon => "full-time.png", :title => "Manage cronjobs"}.as_json,
+						{ :icon => "invoice.png", :title => "Invoices"}.as_json,
+						{ :icon => "bank.png", :title => "Balance"}.as_json,
+						{ :icon => "statistics.png", :title => "Site statistics"}.as_json,
+						{ :icon => "shipping.png", :title => "Check shipping"}.as_json,
+						{ :icon => "bestseller.png", :title => "Bestseller"}.as_json,
+						{ :icon => "config.png", :title => "Configuration"}.as_json,
+						{ :icon => "heart.png", :title => "My Favourites"}.as_json]
+						- @list_quick1.each do |value|
+							%li
+								%a{"href" => "javascript:void(0)"}
+									%img(src="/assets/icons/essen/32/#{value["icon"]}")
+									%span #{value["title"]}
+			.row-fluid
+				.span12
+					.box
+						.box-head
+							%h3 Chart
+							.actions
+								%ul
+									%li.dropdown
+										%a{"href" => "javascript:void(0)", "class" => "btn btn-mini dropdown-toggle", :data => {:toggle =>"dropdown"}}
+											%img{"src" => "/assets/icons/fugue/gear.png", "alt" => ""}
+										%ul{"class" => "dropdown-menu pull-right custom"}
+											- @list_drop = [{ :icon => "printer.png", :title => "Print chart", :divider => true}.as_json,
+											{ :icon => "gear.png", :title => "Chart settings"}.as_json,
+											{ :icon => "bin-metal.png", :title => "Delete chart"}.as_json] 
+											- @list_drop.each do |value|
+												%li
+													%a{"href" => "javascript:void(0)", "class" => "fugue"}
+														%img{"src" => "/assets/icons/fugue/#{value["icon"]}"} #{value["title"]}
+												- if value["divider"]
+													%li.divider
+
+									%li
+										%a{"href" => "javascript:void(0)", "class" => "btn btn-mini tip", "title" =>"Save this chart"}
+											%img{"src" => "/assets/icons/fugue/disk-black.png", "alt" => ""}
+						.box-content
+							%div{"class" => "flot flot-line"}
+			.row-fluid
+				.span6
+					.box
+						.box-head
+							%h3 Recent purchases
+						%div{"class" => "box-content box-nomargin"}
+							%div{"class" => "alert alert-error"}
+								%strong Feature!
+								\Check this awesome custom animation. Click in the table on
+								%strong 'mark as pending'
+								\(2nd action button) !
+							%table{"class" => "table table-striped table-bordered"}
+								%thead
+									%tr
+										- @list_thead = ["Customer", "Product", "Date", "Income", "Actions"]
+										- @list_thead.each do |value|
+											%th #{value}
+								%tbody
+									- @list_tbody = [1, 2, 3, 4, 5]
+									- @list_tbody.each do |value|
+										%tr
+											%td
+												%a{"href" => "javascript:void(0)"} Lorem issum
+											%td The awesome shirt
+											%td.mobile-hide Jul 21, 2018
+											%td.green + 21,4 $
+											%td.actions
+												.btn-group
+													- @list_action = [{:icon => "magnifier.png", :title => "Show details"}.as_json,
+													{:icon => "document-task.png", :title => "Mark as pending", :add_class => "animateRow"}.as_json,
+													{:icon => "cross.png", :title => "Remove", "add_class" => "deleteRow"}.as_json]
+													- @list_action.each do |value|
+														%a{"href" => "javascript:void(0)", :class => ["btn btn-mini tip", ("#{value["add_class"]}" if value["add_class"] )], "title" => "#{value["title"]}"}
+															%img{"src" => "/assets/icons/fugue/#{value["icon"]}"}
+
+
+
